@@ -5,8 +5,6 @@
 .item {
 color: white;
 }
-/*Nav_item__BUsOj*/
-
-.item.active{
+.item.active {
     color: gold;
 }

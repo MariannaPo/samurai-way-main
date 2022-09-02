@@ -1,10 +1,11 @@
 import React from "react";
-import s from "./Profile.module.css"
+import st from "./Profile.module.css"
+import MyPosts from "./MyPosts/Posts/MyPosts";
 
 
 const Profile = () => {
     return (
-        <div className={s.content}>
+        <div className={st.content}>
             <div>
                 <img
                     src="https://c4.wallpaperflare.com/wallpaper/414/412/906/moscow-night-city-wallpaper-preview.jpg"
@@ -14,18 +15,7 @@ const Profile = () => {
                 <div>
                     ava + descriptions
                 </div>
-                My posts
-                <div>
-                    New post
-                </div>
-                <div className={s.posts}>
-                    <div className={s.item}>
-                        post 1
-                    </div>
-                    <div className={s.item}>
-                        post 2
-                    </div>
-                </div>
+                <MyPosts/>
             </div>
         </div>
     )
