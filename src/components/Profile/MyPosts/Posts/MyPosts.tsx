@@ -12,12 +12,8 @@ const MyPosts = () => {
                 <button>Add post</button>
             </div>
             <div className={sta.posts}>
-                <Post/>
-                <Post/>
-                <Post/>
-                <Post/>
-                <Post/>
-                <Post/>
+                <Post message='Hi, hor are u?' likesCount='0'/>
+                <Post message={`It's my first post`} likesCount='23'/>
             </div>
         </div>
 
