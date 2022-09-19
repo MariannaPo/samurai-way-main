@@ -6,7 +6,7 @@ const Dialogs = () => {
         <div className={s.dialogs}>
             <div>
                 <div className={s.dialogsItems}>
-                    <div className={s.dialog}>
+                    <div className={s.dialog + ' ' + s.active}>
                         Dimych
                     </div>
                     <div className={s.dialog}>
@@ -25,12 +25,12 @@ const Dialogs = () => {
                         Valera
                     </div>
                 </div>
-                <div>
-                    <div className={s.messages}>
-                        <div className={s.dialog}>Hi</div>
-                        <div className={s.dialog}>How is your it-kamasutra?</div>
-                        <div className={s.dialog}>Yo</div>
-                    </div>
+            </div>
+            <div>
+                <div className={s.messages}>
+                    <div className={s.dialog}>Hi</div>
+                    <div className={s.dialog}>How is your it-kamasutra?</div>
+                    <div className={s.dialog}>Yo</div>
                 </div>
             </div>
         </div>
