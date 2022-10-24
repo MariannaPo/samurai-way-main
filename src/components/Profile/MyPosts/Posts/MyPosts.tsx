@@ -2,15 +2,17 @@ import React from "react";
 import sta from "./MyPosts.module.css"
 import Post from "./Post";
 
+export type MyPostsPropsType = {
+    posts: Array<{
+        id: number,
+        message: string,
+        likesCount:number
+    }>
+}
 
+const MyPosts = (props: MyPostsPropsType) => {
 
-const MyPosts = () => {
-
-    let posts = [
-        {id: 1, message: 'Hi, how are u?', likesCount: 0},
-        {id: 2, message: `It's my first post`, likesCount: 23},
-    ]
-    let postsElements = posts.map( p => <Post id={p.id} message={p.message} likesCount={p.likesCount}/>);
+    let postsElements = props.posts.map( p => <Post id={p.id} message={p.message} likesCount={p.likesCount}/>);
 
     return (
         <div className={sta.postsBlock}>
