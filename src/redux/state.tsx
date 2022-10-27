@@ -34,8 +34,10 @@ let state = {
     },
     postsState: {
         posts: [
-            {id: 1, message: 'Hi, how are u?', likesCount: 0},
-            {id: 2, message: `It's my first post`, likesCount: 23},
+            {id: 1, message: 'im good', likesCount: 0},
+            {id: 2, message: `Im sad`, likesCount: 23},
+            {id: 3, message: 'Hi, how are u?', likesCount: 78},
+            {id: 4, message: `It's my first post`, likesCount: 6},
         ]
     },
 }
