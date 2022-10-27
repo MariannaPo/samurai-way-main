@@ -1,18 +1,16 @@
 export type StatePropsType = {
-    state: Array<{
-        dialogsState:
-            Array<{
+    state: {
+        dialogsState: {
             dialogs:
-                Array<{ id: number, name: string}>
+                Array<{ id: number, name: string }>
             messages:
-                Array<{ id:number, message: string}>
-        }>,
-        postsState:
-            Array<{
+                Array<{ id: number, message: string }>
+        },
+        postsState: {
             posts:
                 Array<{ id: number, message: string, likesCount: number }>
-        }>,
-    }>,
+        },
+    },
 }
 let state = {
     dialogsState: {

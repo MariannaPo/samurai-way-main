@@ -5,18 +5,14 @@ import Nav from "./components/Nav/Nav";
 import Profile from "./components/Profile/Profile";
 import Dialogs from "./components/Dialogs/Dialogs";
 import {BrowserRouter, Route} from "react-router-dom";
-import post from "./components/Profile/MyPosts/Posts/Post";
-import state, {StatePropsType} from "./redux/state";
+import {StatePropsType} from "./redux/state";
 
-// export type ProfilePropsType= {
-//     // posts: MyPostsPropsType['posts'],
-//     // messages: DialogsPropsType['messages'],
-//     // dialogs: DialogsPropsType['dialogs'],
-//     state: Array<StatePropsType>,
-//
-// }
 
-const App = (props:any) => {
+export type ProfilePropsType= {
+    state: StatePropsType['state'],
+}
+
+const App = (props: ProfilePropsType) => {
 
     return (
         <BrowserRouter>
