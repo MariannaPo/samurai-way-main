@@ -4,14 +4,14 @@ import Post from "./Post";
 import {StatePropsType} from "../../../../redux/state";
 
 export type MyPostsPropsType = {
-    state: StatePropsType['state'],
+    postsState: StatePropsType['state']['postsState'],
 
 }
 
 const MyPosts = (props: MyPostsPropsType) => {
 
-    let postsElements = props.state.postsState.posts.map(p => <Post id={p.id} message={p.message}
-                                                                    likesCount={p.likesCount}/>);
+    let postsElements = props.postsState.posts.map(p => <Post id={p.id} message={p.message}
+                                                              likesCount={p.likesCount}/>);
 
     return (
         <div className={sta.postsBlock}>

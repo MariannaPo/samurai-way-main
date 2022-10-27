@@ -5,7 +5,7 @@ import ProfileInfo from "./ProfileInfo/ProfileInfo";
 import {StatePropsType} from "../../redux/state";
 
 export type ProfilePropsType = {
-    state: StatePropsType['state']
+    postsState: StatePropsType['state']['postsState']
 }
 
 const Profile = (props: ProfilePropsType) => {
@@ -13,7 +13,7 @@ const Profile = (props: ProfilePropsType) => {
     return (
         <div>
             <ProfileInfo/>
-            <MyPosts state={props.state}/>
+            <MyPosts postsState={props.postsState}/>
         </div>
     )
 }
