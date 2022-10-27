@@ -3,18 +3,20 @@ import './App.css';
 import Header from "./components/Header/Header";
 import Nav from "./components/Nav/Nav";
 import Profile from "./components/Profile/Profile";
-import Dialogs, {DialogsPropsType} from "./components/Dialogs/Dialogs";
+import Dialogs from "./components/Dialogs/Dialogs";
 import {BrowserRouter, Route} from "react-router-dom";
 import post from "./components/Profile/MyPosts/Posts/Post";
-import {MyPostsPropsType} from "./components/Profile/MyPosts/Posts/MyPosts";
+import state, {StatePropsType} from "./redux/state";
 
-export type ProfilePropsType= {
-    posts: MyPostsPropsType['posts'],
-    messages: DialogsPropsType['messages'],
-    dialogs: DialogsPropsType['dialogs'],
-}
+// export type ProfilePropsType= {
+//     // posts: MyPostsPropsType['posts'],
+//     // messages: DialogsPropsType['messages'],
+//     // dialogs: DialogsPropsType['dialogs'],
+//     state: Array<StatePropsType>,
+//
+// }
 
-const App = (props:ProfilePropsType ) => {
+const App = (props:any) => {
 
     return (
         <BrowserRouter>
@@ -22,8 +24,8 @@ const App = (props:ProfilePropsType ) => {
                 <Header/>
                 <Nav/>
                 <div className="app-wrapper-content">
-                    <Route path={"/dialogs"} render={ () => <Dialogs messages={props.messages} dialogs={props.dialogs} />}/>
-                    <Route path={"/profile"} render={ () => <Profile posts={props.posts}/>}/>
+                    <Route path={"/dialogs"} render={ () => <Dialogs state={props.state}/>}/>
+                    <Route path={"/profile"} render={ () => <Profile state={props.state}/>}/>
                     <Route path={'/news'}/>
                     <Route path={"/music"}/>
                     <Route path={"/settings"}/>
