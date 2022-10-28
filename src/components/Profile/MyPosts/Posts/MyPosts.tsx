@@ -2,10 +2,11 @@ import React from "react";
 import sta from "./MyPosts.module.css"
 import Post from "./Post";
 import {StatePropsType} from "../../../../redux/state";
+import {text} from "stream/consumers";
 
 export type MyPostsPropsType = {
     postsState: StatePropsType['state']['postsState'],
-
+    addPost: StatePropsType['addPost'],
 }
 
 const MyPosts = (props: MyPostsPropsType) => {
@@ -15,10 +16,13 @@ const MyPosts = (props: MyPostsPropsType) => {
 
     let newPostElement = React.createRef<HTMLTextAreaElement>();
 
-    let onAddPost = () => {
-        let text = newPostElement.current?.value;
-        alert(text);
-    }
+    let addPost = () => {
+        if (newPostElement.current) {
+            let text = newPostElement.current.value;
+            props.addPost(text);
+            newPostElement.current.value = ''
+        }
+    };
 
     return (
         <div className={sta.postsBlock}>
@@ -28,7 +32,7 @@ const MyPosts = (props: MyPostsPropsType) => {
                     <textarea ref={newPostElement}></textarea>
                 </div>
                 <div>
-                    <button onClick={ onAddPost }>Add post</button>
+                    <button onClick={addPost}>Add post</button>
                 </div>
             </div>
             <div className={sta.posts}>

@@ -8,11 +8,13 @@ import {BrowserRouter, Route} from "react-router-dom";
 import {StatePropsType} from "./redux/state";
 
 
-export type ProfilePropsType= {
+
+export type AppPropsType = {
     state: StatePropsType['state'],
+    addPost: StatePropsType['addPost'],
 }
 
-const App = (props: ProfilePropsType) => {
+const App = (props: AppPropsType) => {
 
     return (
         <BrowserRouter>
@@ -21,7 +23,7 @@ const App = (props: ProfilePropsType) => {
                 <Nav/>
                 <div className="app-wrapper-content">
                     <Route path={"/dialogs"} render={ () => <Dialogs dialogsState={props.state.dialogsState}/>}/>
-                    <Route path={"/profile"} render={ () => <Profile postsState={props.state.postsState}/>}/>
+                    <Route path={"/profile"} render={ () => <Profile postsState={props.state.postsState} addPost={props.addPost}/>}/>
                     <Route path={'/news'}/>
                     <Route path={"/music"}/>
                     <Route path={"/settings"}/>

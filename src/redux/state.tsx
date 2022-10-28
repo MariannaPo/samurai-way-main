@@ -1,3 +1,5 @@
+import {rerenderEntireTree} from "../render";
+
 export type StatePropsType = {
     state: {
         dialogsState: {
@@ -11,6 +13,7 @@ export type StatePropsType = {
                 Array<{ id: number, message: string, likesCount: number }>
         },
     },
+    addPost: (postMessage: string | number) => void;
 }
 let state = {
     dialogsState: {
@@ -42,5 +45,15 @@ let state = {
     },
 }
 
+
+export let addPost = (postMessage: any) => {
+    let newPost = {
+        id: 5,
+        message: postMessage,
+        likesCount: 0
+    };
+    state.postsState.posts.push(newPost);
+    rerenderEntireTree(state);
+}
 
 export default state;
