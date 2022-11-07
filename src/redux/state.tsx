@@ -1,75 +1,82 @@
-let rerenderEntireTree = (state: any) => {
-    console.log('State changed');
-}
-
 export type StatePropsType = {
-    state: {
+    store: {
+        _state: {
+            dialogsState: {
+                dialogs:
+                    Array<{ id: number, name: string }>
+                messages:
+                    Array<{ id: number, message: string }>
+            },
+            postsState: {
+                posts:
+                    Array<{ id: number, message: string, likesCount: number }>,
+                newPostText: string,
+            },
+        },
+        addPost: (postMessage: string | number) => void;
+        updateNewPostText: (newText: string | number) => void;
+        callSubscriber: (state: StatePropsType["store"]['_state']) => void;
+        getState: () => StatePropsType['store']['_state'];
+        subscribe: (observer: any) => void;
+    }
+}
+let store: StatePropsType['store'] = {
+    _state: {
         dialogsState: {
-            dialogs:
-                Array<{ id: number, name: string }>
-            messages:
-                Array<{ id: number, message: string }>
+
+            dialogs: [
+                {id: 1, name: "Dimych"},
+                {id: 2, name: "Andrey"},
+                {id: 3, name: "Sveta"},
+                {id: 4, name: "Sasha"},
+                {id: 5, name: "Viktor"},
+                {id: 6, name: "Valera"},
+            ],
+            messages: [
+                {id: 1, message: 'Hi'},
+                {id: 2, message: `How is your it-kamasutra?`},
+                {id: 3, message: "Yo"},
+                {id: 4, message: "Yo"},
+                {id: 5, message: "Buy"},
+                {id: 6, message: "What?"},
+            ]
         },
         postsState: {
-            posts:
-                Array<{ id: number, message: string, likesCount: number }>,
-            newPostText: string,
+            posts: [
+                {id: 1, message: 'im good', likesCount: 0},
+                {id: 2, message: `Im sad`, likesCount: 23},
+                {id: 3, message: 'Hi, how are u?', likesCount: 78},
+                {id: 4, message: `It's my first post`, likesCount: 6},
+            ],
+            newPostText: 'it-kamasutra.com',
         },
     },
-    addPost: (postMessage: string | number) => void;
-    updateNewPostText: (newText: string | number) => void;
-    subscribe: (observer: any) => void;
-}
-let state = {
-    dialogsState: {
-
-        dialogs: [
-            {id: 1, name: "Dimych"},
-            {id: 2, name: "Andrey"},
-            {id: 3, name: "Sveta"},
-            {id: 4, name: "Sasha"},
-            {id: 5, name: "Viktor"},
-            {id: 6, name: "Valera"},
-        ],
-        messages: [
-            {id: 1, message: 'Hi'},
-            {id: 2, message: `How is your it-kamasutra?`},
-            {id: 3, message: "Yo"},
-            {id: 4, message: "Yo"},
-            {id: 5, message: "Buy"},
-            {id: 6, message: "What?"},
-        ]
+    getState() {
+        return this._state;
     },
-    postsState: {
-        posts: [
-            {id: 1, message: 'im good', likesCount: 0},
-            {id: 2, message: `Im sad`, likesCount: 23},
-            {id: 3, message: 'Hi, how are u?', likesCount: 78},
-            {id: 4, message: `It's my first post`, likesCount: 6},
-        ],
-        newPostText: 'it-kamasutra.com',
+    callSubscriber() {
+        console.log('State changed');
     },
+    addPost() {
+        let newPost = {
+            id: 5,
+            message: this._state.postsState.newPostText,
+            likesCount: 0
+        };
+        this._state.postsState.posts.push(newPost);
+        this._state.postsState.newPostText = '';
+        this.callSubscriber(this._state);
+    },
+    updateNewPostText(newText: any) {
+        this._state.postsState.newPostText = newText;
+        this.callSubscriber(this._state);
+    },
+    subscribe(observer: any) {
+        this.callSubscriber = observer;
+    }
 }
 
+export default store;
 
-export const addPost = () => {
-    let newPost = {
-        id: 5,
-        message: state.postsState.newPostText,
-        likesCount: 0
-    };
-    state.postsState.posts.push(newPost);
-    state.postsState.newPostText = '';
-    rerenderEntireTree(state);
+export class updateNewPostText {
 }
-
-export const updateNewPostText = (newText: any) => {
-    state.postsState.newPostText = newText;
-    rerenderEntireTree(state);
-}
-
-export const subscribe = (observer: any) => {
-rerenderEntireTree = observer;
-}
-
-export default state;

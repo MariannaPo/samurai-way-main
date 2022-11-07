@@ -6,9 +6,9 @@ import {StatePropsType} from "../../../../redux/state";
 
 export type MyPostsPropsType = {
     newPostText: string;
-    postsState: StatePropsType['state']['postsState'],
-    addPost: StatePropsType['addPost'],
-    updateNewPostText: StatePropsType['updateNewPostText'],
+    postsState: StatePropsType['store']['_state']['postsState'],
+    addPost: StatePropsType['store']['addPost'],
+    updateNewPostText: StatePropsType['store']['updateNewPostText'],
 }
 
 const MyPosts = (props: MyPostsPropsType) => {

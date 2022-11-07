@@ -4,15 +4,15 @@ import Header from "./components/Header/Header";
 import Nav from "./components/Nav/Nav";
 import Profile from "./components/Profile/Profile";
 import Dialogs from "./components/Dialogs/Dialogs";
-import {BrowserRouter, Route} from "react-router-dom";
-import {StatePropsType, updateNewPostText} from "./redux/state";
+import {Route} from "react-router-dom";
+import {StatePropsType} from "./redux/state";
 
 
 
 export type AppPropsType = {
-    state: StatePropsType['state'],
-    addPost: StatePropsType['addPost'],
-    updateNewPostText: StatePropsType['updateNewPostText'],
+    state: StatePropsType['store']['_state'],
+    addPost: StatePropsType['store']['addPost'],
+    updateNewPostText: StatePropsType['store']['updateNewPostText'],
 }
 
 const App = (props: AppPropsType) => {
@@ -25,7 +25,7 @@ const App = (props: AppPropsType) => {
                 <Route path={"/dialogs"} render={() => <Dialogs dialogsState={props.state.dialogsState}/>}/>
                 <Route path={"/profile"}
                        render={() => <Profile postsState={props.state.postsState} addPost={props.addPost}
-                                              updateNewPostText={updateNewPostText}/>}/>
+                                              updateNewPostText={props.updateNewPostText}/>}/>
                 <Route path={'/news'}/>
                 <Route path={"/music"}/>
                 <Route path={"/settings"}/>

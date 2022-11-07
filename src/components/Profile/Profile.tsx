@@ -4,9 +4,9 @@ import ProfileInfo from "./ProfileInfo/ProfileInfo";
 import {StatePropsType} from "../../redux/state";
 
 export type ProfilePropsType = {
-    postsState: StatePropsType['state']['postsState'],
-    addPost: StatePropsType['addPost'],
-    updateNewPostText: StatePropsType['updateNewPostText'],
+    postsState: StatePropsType['store']['_state']['postsState'],
+    addPost: StatePropsType['store']['addPost'],
+    updateNewPostText: StatePropsType['store']['updateNewPostText'],
 }
 
 const Profile = (props: ProfilePropsType) => {

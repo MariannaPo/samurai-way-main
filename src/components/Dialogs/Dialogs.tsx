@@ -5,7 +5,7 @@ import Message from "./Message/Message";
 import {StatePropsType} from "../../redux/state";
 
 export type DialogsPropsType = {
-    dialogsState: StatePropsType['state']['dialogsState']
+    dialogsState: StatePropsType['store']['_state']['dialogsState']
 }
 
 
