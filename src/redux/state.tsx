@@ -1,4 +1,6 @@
-import {rerenderEntireTree} from "../render";
+let rerenderEntireTree = (state: any) => {
+    console.log('State changed');
+}
 
 export type StatePropsType = {
     state: {
@@ -16,6 +18,7 @@ export type StatePropsType = {
     },
     addPost: (postMessage: string | number) => void;
     updateNewPostText: (newText: string | number) => void;
+    subscribe: (observer: any) => void;
 }
 let state = {
     dialogsState: {
@@ -49,7 +52,7 @@ let state = {
 }
 
 
-export let addPost = () => {
+export const addPost = () => {
     let newPost = {
         id: 5,
         message: state.postsState.newPostText,
@@ -60,9 +63,13 @@ export let addPost = () => {
     rerenderEntireTree(state);
 }
 
-export let updateNewPostText = (newText: any) => {
+export const updateNewPostText = (newText: any) => {
     state.postsState.newPostText = newText;
     rerenderEntireTree(state);
+}
+
+export const subscribe = (observer: any) => {
+rerenderEntireTree = observer;
 }
 
 export default state;
