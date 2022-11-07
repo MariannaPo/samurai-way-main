@@ -6,6 +6,7 @@ import {StatePropsType} from "../../redux/state";
 export type ProfilePropsType = {
     postsState: StatePropsType['state']['postsState'],
     addPost: StatePropsType['addPost'],
+    updateNewPostText: StatePropsType['updateNewPostText'],
 }
 
 const Profile = (props: ProfilePropsType) => {
@@ -13,7 +14,10 @@ const Profile = (props: ProfilePropsType) => {
     return (
         <div>
             <ProfileInfo/>
-            <MyPosts postsState={props.postsState} addPost={props.addPost}/>
+            <MyPosts postsState={props.postsState}
+                     addPost={props.addPost}
+                     newPostText={props.postsState.newPostText}
+                     updateNewPostText={props.updateNewPostText}/>
         </div>
     )
 }

@@ -10,10 +10,12 @@ export type StatePropsType = {
         },
         postsState: {
             posts:
-                Array<{ id: number, message: string, likesCount: number }>
+                Array<{ id: number, message: string, likesCount: number }>,
+            newPostText: string,
         },
     },
     addPost: (postMessage: string | number) => void;
+    updateNewPostText: (newText: string | number) => void;
 }
 let state = {
     dialogsState: {
@@ -41,18 +43,25 @@ let state = {
             {id: 2, message: `Im sad`, likesCount: 23},
             {id: 3, message: 'Hi, how are u?', likesCount: 78},
             {id: 4, message: `It's my first post`, likesCount: 6},
-        ]
+        ],
+        newPostText: 'it-kamasutra.com',
     },
 }
 
 
-export let addPost = (postMessage: any) => {
+export let addPost = () => {
     let newPost = {
         id: 5,
-        message: postMessage,
+        message: state.postsState.newPostText,
         likesCount: 0
     };
     state.postsState.posts.push(newPost);
+    state.postsState.newPostText = '';
+    rerenderEntireTree(state);
+}
+
+export let updateNewPostText = (newText: any) => {
+    state.postsState.newPostText = newText;
     rerenderEntireTree(state);
 }
 
