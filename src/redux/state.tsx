@@ -13,11 +13,12 @@ export type StatePropsType = {
                 newPostText: string,
             },
         },
-        addPost: (postMessage: string | number) => void;
-        updateNewPostText: (newText: string | number) => void;
-        callSubscriber: (state: StatePropsType["store"]['_state']) => void;
+        _callSubscriber: (state: StatePropsType["store"]['_state']) => void;
+        // addPost: (postMessage: string | number) => void;
+        // updateNewPostText: (newText: string | number) => void;
         getState: () => StatePropsType['store']['_state'];
         subscribe: (observer: any) => void;
+        dispatch: (action: any) => void;
     }
 }
 let store: StatePropsType['store'] = {
@@ -51,32 +52,44 @@ let store: StatePropsType['store'] = {
             newPostText: 'it-kamasutra.com',
         },
     },
+    _callSubscriber() {
+        console.log('State changed');
+    },
     getState() {
         return this._state;
     },
-    callSubscriber() {
-        console.log('State changed');
-    },
-    addPost() {
-        let newPost = {
-            id: 5,
-            message: this._state.postsState.newPostText,
-            likesCount: 0
-        };
-        this._state.postsState.posts.push(newPost);
-        this._state.postsState.newPostText = '';
-        this.callSubscriber(this._state);
-    },
-    updateNewPostText(newText: any) {
-        this._state.postsState.newPostText = newText;
-        this.callSubscriber(this._state);
-    },
     subscribe(observer: any) {
-        this.callSubscriber = observer;
+        this._callSubscriber = observer;
+    },
+    // addPost() {
+    //     let newPost = {
+    //         id: 5,
+    //         message: this._state.postsState.newPostText,
+    //         likesCount: 0
+    //     };
+    //     this._state.postsState.posts.push(newPost);
+    //     this._state.postsState.newPostText = '';
+    //     this._callSubscriber(this._state);
+    // },
+    // updateNewPostText(newText: any) {
+    //     this._state.postsState.newPostText = newText;
+    //     this._callSubscriber(this._state);
+    // },
+    dispatch (action: any) {
+        if (action.type === "ADD-POST") {
+            let newPost = {
+                id: 5,
+                message: this._state.postsState.newPostText,
+                likesCount: 0
+            };
+            this._state.postsState.posts.push(newPost);
+            this._state.postsState.newPostText = '';
+            this._callSubscriber(this._state);
+        } else if (action.type === 'UPDATE-NEW-POST-TEXT') {
+            this._state.postsState.newPostText = action.newPostText;
+            this._callSubscriber(this._state);
+        }
     }
 }
 
 export default store;
-
-export class updateNewPostText {
-}

@@ -11,8 +11,9 @@ import {StatePropsType} from "./redux/state";
 
 export type AppPropsType = {
     state: StatePropsType['store']['_state'],
-    addPost: StatePropsType['store']['addPost'],
-    updateNewPostText: StatePropsType['store']['updateNewPostText'],
+    // addPost: StatePropsType['store']['addPost'],
+    // updateNewPostText: StatePropsType['store']['updateNewPostText'],
+    dispatch: StatePropsType['store']['dispatch'],
 }
 
 const App = (props: AppPropsType) => {
@@ -23,9 +24,7 @@ const App = (props: AppPropsType) => {
             <Nav/>
             <div className="app-wrapper-content">
                 <Route path={"/dialogs"} render={() => <Dialogs dialogsState={props.state.dialogsState}/>}/>
-                <Route path={"/profile"}
-                       render={() => <Profile postsState={props.state.postsState} addPost={props.addPost}
-                                              updateNewPostText={props.updateNewPostText}/>}/>
+                <Route path={"/profile"} render={() => <Profile postsState={props.state.postsState} dispatch={props.dispatch}/>}/>
                 <Route path={'/news'}/>
                 <Route path={"/music"}/>
                 <Route path={"/settings"}/>

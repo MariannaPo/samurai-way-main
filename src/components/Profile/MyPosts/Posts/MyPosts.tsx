@@ -7,8 +7,9 @@ import {StatePropsType} from "../../../../redux/state";
 export type MyPostsPropsType = {
     newPostText: string;
     postsState: StatePropsType['store']['_state']['postsState'],
-    addPost: StatePropsType['store']['addPost'],
-    updateNewPostText: StatePropsType['store']['updateNewPostText'],
+    // addPost: StatePropsType['store']['addPost'],
+    // updateNewPostText: StatePropsType['store']['updateNewPostText'],
+    dispatch: StatePropsType['store']['dispatch'],
 }
 
 const MyPosts = (props: MyPostsPropsType) => {
@@ -17,19 +18,18 @@ const MyPosts = (props: MyPostsPropsType) => {
                                                               likesCount={p.likesCount}/>);
 
     let newPostElement = React.createRef<HTMLTextAreaElement>();
-
     let addPost = () => {
         if (newPostElement.current) {
             let text = newPostElement.current.value;
-            props.addPost(text);
-            props.updateNewPostText ('');
+            props.dispatch({type: "ADD-POST"});
         }
     }
     let onPostChange = () => {
-        if (newPostElement.current) {
-            let text = newPostElement.current.value;
-            props.updateNewPostText(text);
-        }
+        console.log(newPostElement.current?.value)
+        // if (newPostElement.current) {
+        //     let text = newPostElement.current.value;
+        //     props.dispatch({type:'UPDATE-NEW-POST-TEXT'});
+        // }
     }
 
     return (
