@@ -25,11 +25,12 @@ const MyPosts = (props: MyPostsPropsType) => {
         }
     }
     let onPostChange = () => {
-        console.log(newPostElement.current?.value)
-        // if (newPostElement.current) {
-        //     let text = newPostElement.current.value;
-        //     props.dispatch({type:'UPDATE-NEW-POST-TEXT'});
-        // }
+        // console.log(newPostElement.current?.value)
+        if (newPostElement.current) {
+            let text = newPostElement.current.value;
+            let action = {type:'UPDATE-NEW-POST-TEXT', newText: text};
+            props.dispatch(action);
+        }
     }
 
     return (

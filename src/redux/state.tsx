@@ -61,20 +61,6 @@ let store: StatePropsType['store'] = {
     subscribe(observer: any) {
         this._callSubscriber = observer;
     },
-    // addPost() {
-    //     let newPost = {
-    //         id: 5,
-    //         message: this._state.postsState.newPostText,
-    //         likesCount: 0
-    //     };
-    //     this._state.postsState.posts.push(newPost);
-    //     this._state.postsState.newPostText = '';
-    //     this._callSubscriber(this._state);
-    // },
-    // updateNewPostText(newText: any) {
-    //     this._state.postsState.newPostText = newText;
-    //     this._callSubscriber(this._state);
-    // },
     dispatch (action: any) {
         if (action.type === "ADD-POST") {
             let newPost = {
@@ -86,7 +72,7 @@ let store: StatePropsType['store'] = {
             this._state.postsState.newPostText = '';
             this._callSubscriber(this._state);
         } else if (action.type === 'UPDATE-NEW-POST-TEXT') {
-            this._state.postsState.newPostText = action.newPostText;
+            this._state.postsState.newPostText = action.newText;
             this._callSubscriber(this._state);
         }
     }
