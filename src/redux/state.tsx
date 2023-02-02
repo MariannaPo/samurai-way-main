@@ -1,3 +1,5 @@
+const ADD_POST = "ADD-POST";
+const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT';
 export type StatePropsType = {
     store: {
         _state: {
@@ -62,7 +64,7 @@ let store: StatePropsType['store'] = {
         this._callSubscriber = observer;
     },
     dispatch (action: any) {
-        if (action.type === "ADD-POST") {
+        if (action.type === ADD_POST) {
             let newPost = {
                 id: 5,
                 message: this._state.postsState.newPostText,
@@ -71,11 +73,24 @@ let store: StatePropsType['store'] = {
             this._state.postsState.posts.push(newPost);
             this._state.postsState.newPostText = '';
             this._callSubscriber(this._state);
-        } else if (action.type === 'UPDATE-NEW-POST-TEXT') {
+        } else if (action.type === UPDATE_NEW_POST_TEXT) {
             this._state.postsState.newPostText = action.newText;
             this._callSubscriber(this._state);
         }
     }
 }
+export const addPostActionCreator=()=>{
+    return {
+        type: ADD_POST
+    }
+}
+
+export const updateNewPostTextActionCreator = (text: string) => {
+    return {
+        type: UPDATE_NEW_POST_TEXT,
+        newText: text
+    }
+}
+
 
 export default store;
