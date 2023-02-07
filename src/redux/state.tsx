@@ -14,6 +14,7 @@ export type StatePropsType = {
                 newMessageBody:
                     Array<{new: string}>
             },
+
             postsState: {
                 posts:
                     Array<{ id: number, message: string, likesCount: number }>,
@@ -28,7 +29,7 @@ export type StatePropsType = {
         dispatch: (action: any) => void;
     }
 }
-let store: StatePropsType['store'] = {
+export let store: StatePropsType['store'] = {
     _state: {
         dialogsState: {
 

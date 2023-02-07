@@ -5,12 +5,13 @@ import Nav from "./components/Nav/Nav";
 import Profile from "./components/Profile/Profile";
 import Dialogs from "./components/Dialogs/Dialogs";
 import {Route} from "react-router-dom";
-import {StatePropsType} from "./redux/state";
+import {StatePropsType, store} from "./redux/state";
 
 
 
 export type AppPropsType = {
     state: StatePropsType['store']['_state'],
+    store: StatePropsType['store'],
     // addPost: StatePropsType['store']['addPost'],
     // updateNewPostText: StatePropsType['store']['updateNewPostText'],
     dispatch: StatePropsType['store']['dispatch'],

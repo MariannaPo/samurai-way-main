@@ -5,7 +5,9 @@ import Message from "./Message/Message";
 import {StatePropsType, updateNewMessageBodyCreator} from "../../redux/state";
 
 export type DialogsPropsType = {
-    dialogsState: StatePropsType['store']['_state']['dialogsState']
+    dialogsState: StatePropsType['store']['_state']['dialogsState'],
+    store: StatePropsType['store'],
+    dispatch: StatePropsType['store'],
 }
 
 
