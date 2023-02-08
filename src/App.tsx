@@ -17,6 +17,7 @@ export type AppPropsType = {
     store: StatePropsType['store']
 }
 
+//NORMAL///
 const App = (props: AppPropsType) => {
 
     return (
