@@ -3,9 +3,9 @@ import './App.css';
 import Header from "./components/Header/Header";
 import Nav from "./components/Nav/Nav";
 import Profile from "./components/Profile/Profile";
-import Dialogs from "./components/Dialogs/Dialogs";
+import Dialogs, {DialogsPropsType} from "./components/Dialogs/Dialogs";
 import {Route} from "react-router-dom";
-import {StatePropsType} from "./redux/state";
+import store, {StatePropsType} from "./redux/state";
 
 
 
@@ -14,6 +14,7 @@ export type AppPropsType = {
     // addPost: StatePropsType['store']['addPost'],
     // updateNewPostText: StatePropsType['store']['updateNewPostText'],
     dispatch: StatePropsType['store']['dispatch'],
+    store: StatePropsType['store']
 }
 
 const App = (props: AppPropsType) => {
@@ -23,7 +24,7 @@ const App = (props: AppPropsType) => {
             <Header/>
             <Nav/>
             <div className="app-wrapper-content">
-                <Route path={"/dialogs"} render={() => <Dialogs dialogsState={props.state.dialogsState}/>}/>
+                <Route path={"/dialogs"} render={() => <Dialogs store={props.store} dialogsState={props.state.dialogsState}/>}/>
                 <Route path={"/profile"} render={() => <Profile postsState={props.state.postsState} dispatch={props.dispatch}/>}/>
                 <Route path={'/news'}/>
                 <Route path={"/music"}/>

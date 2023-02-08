@@ -1,3 +1,11 @@
+import {text} from "stream/consumers";
+
+const ADD_POST = "ADD-POST";
+const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT';
+const UPDATE_NEW_MESSAGE_TEXT = "UPDATE_NEW_POST_TEXT";
+const SEND_MESSAGE = 'SEND_MESSAGE';
+
+
 export type StatePropsType = {
     store: {
         _state: {
@@ -6,6 +14,7 @@ export type StatePropsType = {
                     Array<{ id: number, name: string }>
                 messages:
                     Array<{ id: number, message: string }>
+                newMessageText: string
             },
             postsState: {
                 posts:
@@ -40,7 +49,9 @@ let store: StatePropsType['store'] = {
                 {id: 4, message: "Yo"},
                 {id: 5, message: "Buy"},
                 {id: 6, message: "What?"},
-            ]
+            ],
+            newMessageText: 'it-kamasutra.com',
+
         },
         postsState: {
             posts: [
@@ -62,7 +73,7 @@ let store: StatePropsType['store'] = {
         this._callSubscriber = observer;
     },
     dispatch (action: any) {
-        if (action.type === "ADD-POST") {
+        if (action.type === ADD_POST) {
             let newPost = {
                 id: 5,
                 message: this._state.postsState.newPostText,
@@ -71,11 +82,23 @@ let store: StatePropsType['store'] = {
             this._state.postsState.posts.push(newPost);
             this._state.postsState.newPostText = '';
             this._callSubscriber(this._state);
-        } else if (action.type === 'UPDATE-NEW-POST-TEXT') {
+        } else if (action.type === UPDATE_NEW_POST_TEXT) {
             this._state.postsState.newPostText = action.newText;
             this._callSubscriber(this._state);
+        } else if (action.type === UPDATE_NEW_MESSAGE_TEXT) {
+            this._state.dialogsState.newMessageText = action.body;
+            this._callSubscriber(this._state);
+        } else if (action.type === SEND_MESSAGE) {
+           let body =  this._state.dialogsState.newMessageText;
+           this._state.dialogsState.newMessageText = '';
+           this._state.dialogsState.messages.push({id: 7, message: body})
+           this._callSubscriber(this._state);
         }
     }
 }
-
+ export const  addPostActionCreator = () => ({type: ADD_POST})
+export const updateNewPostTextActionCreator = (text: string) =>
+    ({type: UPDATE_NEW_POST_TEXT, newText: text})
+export const sendMessageCreator = () => ({type: SEND_MESSAGE})
+export const updateNewMessage = (body: any) => ({type: UPDATE_NEW_MESSAGE_TEXT, body: body})
 export default store;
