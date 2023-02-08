@@ -10,10 +10,9 @@ import {BrowserRouter} from "react-router-dom";
 export let rerenderEntireTree = (state: any) => {
     ReactDOM.render(
         <BrowserRouter>
-            <App state={store._state} dispatch={store.dispatch.bind(store)} store={store}/>
+            <App state={store._state} dispatch={store.dispatch.bind(store)}/>
         </BrowserRouter>,
         document.getElementById('root'));
 }
 rerenderEntireTree(store.getState());
 store.subscribe(rerenderEntireTree);
-// ServiceWorker.unregister();
